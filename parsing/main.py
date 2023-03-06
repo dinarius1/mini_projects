@@ -32,30 +32,30 @@ def get_all_products_from_page(url:str) -> list:
     for product in products:
         product_info = get_product_info(product)
         res.append(product_info)
-    # print(res)
     return res
+print(get_all_products_from_page('https://www.kivano.kg'))
 
-def write_to_json(data:dict):
-    with open('db.json', 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii= False)
+# def write_to_json(data:dict):
+#     with open('db.json', 'w', encoding='utf-8') as file:
+#         json.dump(data, file, ensure_ascii= False)
 
-def get_last_page(url : str) -> int:
-    soup = get_soup(url)
-    last = soup.find('li', {'class' : 'last'})
-    return int(last.text)
+# def get_last_page(url : str) -> int:
+#     soup = get_soup(url)
+#     last = soup.find('li', {'class' : 'last'})
+#     return int(last.text)
 
 
-def main():
-    category = '/noutbuki'
-    data = {}
-    last_page = get_last_page(BASE_URL + category)
-    for page in range(1,last_page + 1):
-        url = BASE_URL + category + '?page=' + str(page)
-        print(url)
-        one_page_data = get_all_products_from_page(url)
-        data[page] = one_page_data
-    write_to_json(data)
-main()
+# def main():
+#     category = '/noutbuki'
+#     data = {}
+#     last_page = get_last_page(BASE_URL + category)
+#     for page in range(1,last_page + 1):
+#         url = BASE_URL + category + '?page=' + str(page)
+#         print(url)
+#         one_page_data = get_all_products_from_page(url)
+#         data[page] = one_page_data
+#     write_to_json(data)
+# main()
 
 
 
