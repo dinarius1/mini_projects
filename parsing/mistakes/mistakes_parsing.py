@@ -1,9 +1,9 @@
 #Task 1
 
 #неправильный вариант
-# import requests
-# source = requests.get('https://stackoverflow.com/questions')
-# print(source.status_code)
+import requests
+source = requests.get('https://stackoverflow.com/questions')
+print(source.status_code)
 
 # правильный вариант:
 # import requests 
@@ -48,63 +48,78 @@
 
 # Задание 5
 
-# import requests
-# from bs4 import BeautifulSoup
-
-# source = requests.get('https://enter.kg/').text
-# soup = BeautifulSoup(source, 'lxml')
-
-
-# category_list = soup.find('div', class_="moduletable").find('ul').find('li').text
-# print(category_list)
-
-# Задание 6
-    
 import requests
 from bs4 import BeautifulSoup
 
-source = requests.get('https://www.imdb.com/chart/top').text
+source = requests.get('https://enter.kg/').text
 soup = BeautifulSoup(source, 'lxml')
 
-title_list = soup.find('div', class_="lister").find('table').find_all('td', class_="titleColumn")
 
-def get_link(title_list, name : str):
-    titles = []
-    # film_links = []
-    for el in title_list:
-        # titles.append(el.find('a').text)
-        title = el.find('a').text 
-        if title.startswith(name):
-            link = el.find('a').get('href')
-    return link
+category_list = soup.find('div', class_="moduletable").find_all('li', class_="VmClose")
 
-
-
-    # for i in titles:
-    #     if name.startswith(i):
-    #         link = el.find('a').get('href')
-        
-    #     if name in el.find('a').text:
-    #         link = el.find('a').get('href')
-    # return link
-
-        # title_list.append(el.find('a').text)
-        # film_links.append(el.find('a').get('href'))
-    # if name in title_list:
-
-print(get_link(title_list, 'shawshank'))
-    # if name in title_list:
-        
-    #     return 
+res = [el.find('a').text for el in category_list if el.find('a') != None]
 
 
 
 
-s1 = ['Kristina Fedorova']
-s = 'Kristina'
-for i in s1:
-    if i.startswith(s):
-        print('True')
-    else:
-        print('F')
+# while '\t' in res:
+#     res.remove('\t')
+
+# res2 = []
+# main_list = []
+# for el in res:
+#     res2.append(el.split('\n'))
+# for l in res2:
+#     main_list.append(l[0])
+# print(res2)
+    
+
+# if ', ' in res:
+#     res.remove(', ')
+# for el in res:
+#     if el == '':
+#         res.remove(el)
+# print(res2)
+
+
+# # print(category_list)
+# res = [el.find( for el in category_list]
+# # res2 = [el.text for el in res]
+# print(res)
+
+# Задание 6
+    
+# import requests
+# from bs4 import BeautifulSoup
+
+# source = requests.get('https://www.imdb.com/chart/top').text
+# soup = BeautifulSoup(source, 'lxml')
+
+# titles = soup.find('div', class_="lister").find('table').find_all('td', class_="titleColumn")
+
+# title_list = [el.find('a').text for el in titles]
+# print(title_list)
+
+# def get_link(title_list, name : str):
+#     main_url = 'https://www.imdb.com'
+#     film_links = [main_url + el.find('a').get('href') for el in titles]
+#     dict_ = dict(zip(title_list, film_links))
+
+#     for n, link in dict_.items():
+#         if name.lower() in n.lower():
+#             return link
+
+# print(get_link(title_list, 'shawshank'))
+
+
+# # films = {'The Shawshank Redemption': 'https://www.imdb.com/title/tt0111161/', 'The Godfather': 'https://www.imdb.com/title/tt0068646/'}
+
+
+# # name = 'shawshank'
+
+# # for n, link in films.items():
+# #     if name.lower() in n.lower():
+# #         print(link)
+
+
 

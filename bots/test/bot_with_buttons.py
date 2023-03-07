@@ -9,7 +9,7 @@ no_sticker = 'CAACAgIAAxkBAAEIBXdkBYbbUd74_HVKOaOe8soLBsY-FgACewAD_DykE864AAHndw
 
 bot = telebot.TeleBot(token)
 
-#клавиатура
+#клавиатура, которая будет находиться там, где клавиатура
 keyboard = telebot.types.ReplyKeyboardMarkup()
 b1 = telebot.types.KeyboardButton('Да')
 b2 = telebot.types.KeyboardButton('Нет')
@@ -19,6 +19,8 @@ keyboard.add(b1,b2)
 def start(message):
     bot.send_message(message.chat.id, 'Привет,выбери кнопку', reply_markup=keyboard)
     bot.register_next_step_handler(message, reply_to_button)
+# register_next_step_handler - принимает сообщение и функцию, которая вызовется как только пользователь отправит любое сообщение
+# это сообщение и передастся в функцию
 
 def reply_to_button(message):
     if message.text == 'Да':

@@ -27,5 +27,6 @@ def reply_to_button(call):
         bot.send_sticker(call.from_user.id, yes_sticker)
     elif call.data == 'no':
         bot.send_sticker(call.from_user.id, no_sticker)
+    
 
 bot.polling()
